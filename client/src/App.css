@@ -1,0 +1,175 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* RegisrtForm */
+.contsiner-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f5f5f5;
+}
+
+.contsiner-form form {
+  background: #ffffff;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contsiner-form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: left;
+}
+
+.contsiner-form input {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #333;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.contsiner-form input:focus {
+  border-color: #4a90e2;
+  background-color: #fff;
+}
+
+.contsiner-form input:hover {
+  border-color: #d0d0d0;
+}
+
+.contsiner-form input::placeholder {
+  color: #999;
+}
+
+.contsiner-form button {
+  margin-top: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contsiner-form button:hover {
+  background: #357abd;
+}
+
+.contsiner-form button:active {
+  background: #2a6fa5;
+}
+
+.contsiner-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contsiner-form p {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #333;
+  font-size: 0.95rem;
+  text-align: center;
+  border-left: 3px solid #4a90e2;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .contsiner-form {
+    padding: 1rem;
+  }
+
+  .contsiner-form form {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+  }
+
+  .contsiner-form input {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .contsiner-form button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contsiner-form form {
+    padding: 1.5rem 1rem;
+    border-radius: 15px;
+  }
+
+  .contsiner-form label {
+    font-size: 0.9rem;
+  }
+
+  .contsiner-form input {
+    padding: 0.7rem 0.9rem;
+  }
+}
