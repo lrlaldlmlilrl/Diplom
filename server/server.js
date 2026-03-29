@@ -1,9 +1,7 @@
 import express from "express";
-import bcrypt from "bcryptjs";
 import cookieParser from "cookie-parser";
-import {User} from "./models/User"
 import { sequelize } from "./models/index";
-import {authRouter} from "../routes/auth.routes"
+import {authRouter} from "./routes/auth.routes"
  
 const app = express();
 

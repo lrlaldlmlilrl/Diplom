@@ -1,4 +1,5 @@
-import User from "../models/User"
+import {User} from "../models/User"
+import bcrypt from "bcryptjs";
 
 const registerUser = async (req, res) =>{
     try {
@@ -28,9 +29,6 @@ const getProfile = async (req, res) =>{
     res.send("Дать данные юзера")
 }
 
-app.post("/api/registr",async (req,res)=>{
-    
-})
 
 
 export {registerUser,loginUser,logoutUser,getProfile}
