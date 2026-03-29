@@ -1,4 +1,4 @@
-import {sequelize ,DataTypes} from "../models/index";
+import {sequelize ,DataTypes} from "../models/index.js";
 
 const User =  sequelize.define("User",{
     login:{type:DataTypes.STRING , allowNull:false },

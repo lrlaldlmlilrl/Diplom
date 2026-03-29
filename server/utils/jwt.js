@@ -13,7 +13,6 @@ const verifyToken = (token) =>{
         const payload = jwt.verify(token,secret)
         return payload
     }catch {
-        throw
     }
     
 }

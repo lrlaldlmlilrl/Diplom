@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { sequelize } from "./models/index";
-import {authRouter} from "./routes/auth.routes"
+import { sequelize } from "./models/index.js";
+import {authRouter} from "./routes/auth.routes.js"
  
 const app = express();
 

@@ -1,4 +1,4 @@
-import jwtUtils from "../utils/jwt";
+import jwtUtils from "../utils/jwt.js";
 
 const authMiddleware = (req, res, next) =>{
     try {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 
-export default function RegistrForm() {
+export default function RegisterForm() {
     const[formData, setFormData] = useState({
         login:"",
         password:"",
@@ -26,7 +26,7 @@ export default function RegistrForm() {
 
     const handleSubmit = (event) =>{
         event.preventDefault()
-        fetch("/api/registr", {
+        fetch("/api/register", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
