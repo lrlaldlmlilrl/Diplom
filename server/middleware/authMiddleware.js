@@ -1,9 +1,9 @@
-import jwtUtils from "../utils/jwt.js";
+import {generateToken, verifyToken} from "../utils/jwt.js"
 
 const authMiddleware = (req, res, next) =>{
     try {
         const token = req.cookies.token;
-        const payload = jwtUtils.verifyToken(token);
+        const payload = verifyToken(token);
         req.user = payload;
         next();
     } catch {

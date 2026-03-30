@@ -43,7 +43,7 @@ export default function RegisterForm() {
         <div className='contsiner-form'>
             <form onSubmit={handleSubmit} >
                 <label htmlFor="login">Введите логин</label>
-                <input type="text" name="login" id="login" value={formData.login} onChange={(event)=>{
+                <input required  type="text" name="login" id="login" value={formData.login} onChange={(event)=>{
                     setFormData({
                         ...formData,
                         login:event.target.value,
@@ -51,14 +51,14 @@ export default function RegisterForm() {
                 }}/>
 
                 <label htmlFor="password">Введите пароль</label>
-                <input type="password" name="password" id="password" value={formData.password} onChange={(event)=>{setFormData({
+                <input required  type="password" name="password" id="password" value={formData.password} onChange={(event)=>{setFormData({
                         ...formData,
                         password:event.target.value
                     })
                 }} />
 
                 <label htmlFor="fullName">Введите ФИО</label>
-                <input type="text" name="fullName" id="fullName" value={formData.fullName} onChange={(event)=>{
+                <input required  type="text" name="fullName" id="fullName" value={formData.fullName} onChange={(event)=>{
                     setFormData({
                         ...formData,
                         fullName:event.target.value
@@ -66,7 +66,7 @@ export default function RegisterForm() {
                 }} />
 
                 <label htmlFor="phone">Введите телефон</label>
-                <input type="tel" name="phone" id="phone" value={formData.phone} onChange={(event)=>{
+                <input required  type="tel" name="phone" id="phone" value={formData.phone} onChange={(event)=>{
                     setFormData({
                         ...formData,
                         phone:event.target.value
@@ -74,7 +74,7 @@ export default function RegisterForm() {
                 }} />
 
                 <label htmlFor="email">Введите почту</label>
-                <input type="email" name="email" id="email" value={formData.email} onChange={(event)=>{
+                <input required  type="email" name="email" id="email" value={formData.email} onChange={(event)=>{
                     setFormData({
                         ...formData,
                         email:event.target.value
