@@ -9,11 +9,9 @@ const generateToken = (payload) =>{
 }
 
 const verifyToken = (token) =>{
-    try{
-        const payload = jwt.verify(token,secret)
-        return payload
-    }catch {
-    }
+    const payload = jwt.verify(token,secret)
+    return payload
+
     
 }
 

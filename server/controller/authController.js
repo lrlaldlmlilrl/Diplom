@@ -1,7 +1,6 @@
 import {User} from "../models/User.js"
 import bcrypt from "bcryptjs";
 import {generateToken, verifyToken} from "../utils/jwt.js"
-import { HttpProxy } from "vite";
 
 const registerUser = async (req, res) =>{
     try {
@@ -22,22 +21,26 @@ const registerUser = async (req, res) =>{
 
 const loginUser = async (req, res) =>{
     try {
-        const loginUser = User.findOne({
+        const user = await User.findOne({
             where: {login: req.body.login}}
         )
-        if (loginUser) {
-            const isPassword = await bcrypt.compare(req.body.password, loginUser.password)
+        if (user) {
+            const isPassword = await bcrypt.compare(req.body.password, user.password)
             if (isPassword) {
-                const token = generateToken(loginUser.id)
+                const token = generateToken({id: user.id})
                 res.cookie("token", token, {
                     httpOnly: true,
                     sameSite: 'strict' 
                 })
                 res.json({message: "ПОльзователь вошел успешно"})
+            } else {
+                res.sendStatus(403)
             }
-        }  
+        } else {
+            res.sendStatus(403)
+        }
     } catch {
-        res.status(403)
+        res.sendStatus(403)
     }
 };
 const logoutUser = async (req, res) =>{
