@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function RegisterForm() {
@@ -11,6 +11,7 @@ export default function RegisterForm() {
         phone:"",
         email:"",
     })  
+    const navigate = useNavigate();
 
     const handleSubmit = (event) =>{
         event.preventDefault()
@@ -19,9 +20,17 @@ export default function RegisterForm() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
             credentials: "include"
-        }).then((res) => {
-            return res.json()
-        }).then(data => {console.log(data)})
+        })
+        .then(res => {
+            if (!res.ok){
+                throw new Error("Ошибка регистрации")
+            } else {
+                return res
+            }
+        })
+        .then(() => {
+            navigate("/login", {replace: true})
+        })
         .catch((err) => {
             console.log("Error:", err)
         })
@@ -29,10 +38,10 @@ export default function RegisterForm() {
     
 
     const handleChange = (event) =>{
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [event.target.name]: event.target.value 
-        })
+        }))
     }
 
     return (
