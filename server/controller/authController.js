@@ -10,7 +10,6 @@ const registerUser = async (req, res) =>{
             password:hashPassword,
             fullName:req.body.fullName,
             phone:req.body.phone,
-            email:req.body.email,
         })
     
     res.sendStatus(201)
