@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState } from 'react'
+import { Link } from 'react-router-dom';
+
 
 export default function RegisterForm() {
     const[formData, setFormData] = useState({
@@ -50,6 +52,8 @@ export default function RegisterForm() {
 
 
                 <button type="submit" >Зарегистрироваться</button>
+
+                <Link to="/login">Войти</Link>
 
             </form>
         </div>

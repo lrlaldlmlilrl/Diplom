@@ -1,13 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import RegistrForm from './components/RegisterForm'
+import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"
+import { Routes, Route } from "react-router-dom"
+
 
 function App() {
-  return (<div>
-    <LoginPage/>
-  </div>)
+  return (
+    <div>
+      <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="*" element={<LoginPage />} />
+    </Routes>
+    </div>
+     
+  )
   
 }
 
