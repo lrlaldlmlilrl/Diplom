@@ -41,20 +41,28 @@ export default function LoginForm() {
 
     return (
 
-        <div className='container-form'>
-        <form onSubmit={handleSubmit} >
-            <label htmlFor="login">Введите логин</label>
-            <input required  type="text" name="login" id="login" value={formData.login} onChange={handleChange}/>
-
-            <label htmlFor="password">Введите пароль</label>
-            <input required  type="password" name="password" id="password" value={formData.password} onChange={handleChange}/>
-
-            
-            <button type="submit" >Войти</button>
-
-            <Link to="/register">Регистрация</Link>
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                name="login"
+                placeholder="Логин"
+                value={formData.login}
+                onChange={handleChange}
+                required
+            />
+            <input
+                type="password"
+                name="password"
+                placeholder="Пароль"
+                value={formData.password}
+                onChange={handleChange}
+                required
+            />
+            <button type="submit">Войти</button>
+            <p>
+                Нет аккаунта? <Link to="/register">Регистрация</Link>
+            </p>
         </form>
-        </div>
 
     )
 }

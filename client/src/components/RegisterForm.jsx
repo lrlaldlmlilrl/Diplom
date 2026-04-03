@@ -45,26 +45,48 @@ export default function RegisterForm() {
     }
 
     return (
-        <div className='container-form'>
-            <form onSubmit={handleSubmit} >
-                <label htmlFor="login">Введите логин</label>
-                <input required  type="text" name="login" id="login" value={formData.login} onChange={handleChange}/>
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                name="login"
+                placeholder="Логин"
+                value={formData.login}
+                onChange={handleChange}
+                required
+            />
 
-                <label htmlFor="password">Введите пароль</label>
-                <input required  type="password" name="password" id="password" value={formData.password} onChange={handleChange}/>
+            <input
+                type="password"
+                name="password"
+                placeholder="Пароль"
+                value={formData.password}
+                onChange={handleChange}
+                required
+            />
 
-                <label htmlFor="fullName">Введите ФИО</label>
-                <input required  type="text" name="fullName" id="fullName" value={formData.fullName} onChange={handleChange}/>
+            <input
+                type="text"
+                name="fullName"
+                placeholder="ФИО"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+            />
 
-                <label htmlFor="phone">Введите телефон</label>
-                <input required  type="tel" name="phone" id="phone" value={formData.phone} onChange={handleChange}/>
+            <input
+                type="tel"
+                name="phone"
+                placeholder="Телефон"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+            />
 
+            <button type="submit">Зарегистрироваться</button>
 
-                <button type="submit" >Зарегистрироваться</button>
-
-                <Link to="/login">Войти</Link>
-
-            </form>
-        </div>
+            <p>
+                Уже есть аккаунт? <Link to="/login">Войти</Link>
+            </p>
+        </form>
     )
 }
