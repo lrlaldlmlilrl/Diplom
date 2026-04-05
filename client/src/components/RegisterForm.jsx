@@ -41,7 +41,8 @@ export default function RegisterForm() {
         setFormData(prev => ({
             ...prev,
             [event.target.name]: event.target.value 
-        }))
+            })
+        )
     }
 
     return (
