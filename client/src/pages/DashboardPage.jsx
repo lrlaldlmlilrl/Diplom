@@ -12,9 +12,26 @@ export default function DashboardPage() {
 
     const [tasks, setTasks] = useState([])
 
-    const addTask = (taskName) =>{
-        setTasks(prev => [...prev, taskName])
+    const addTask = (task) => {
+        const newTask = {
+            ...task,
+            id: Date.now()
+        }
+
+        setTasks(prev => [...prev, newTask])
     }
+
+    const changeTaskStatus = (id, newStatus) => {
+    setTasks(prev =>
+        prev.map(task => {
+            if (task.id === id) {
+                return { ...task, status: newStatus }
+            }
+            return task
+        })
+    )
+}
+
     return (
         <div className="layout">
             <Sidebar />
@@ -23,6 +40,7 @@ export default function DashboardPage() {
                 <TopBar onOpenModal={openModal} />
                 <KanbanBoard 
                     tasks = {tasks}    
+                    onChangeStatus = {changeTaskStatus}
                 />
 
                 <Modal 
