@@ -1,13 +1,13 @@
 export default function Sidebar() {
-  return (
-    <aside className="sidebar">
-      <h2 className="logo">SoftAlert</h2>
+    return (
+        <aside className="sidebar">
+            <h2>SoftAlert</h2>
 
-      <nav>
-        <a className="active">Доска задач</a>
-        <a>Календарь</a>
-        <a>Сотрудники</a>
-      </nav>
-    </aside>
-  )
+            <nav>
+                <p>Доска задач</p>
+                <p>Календарь</p>
+                <p>Сотрудники</p>
+            </nav>
+        </aside>
+    )
 }

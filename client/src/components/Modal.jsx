@@ -1,54 +1,61 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function Modal({ isOpen, onClose, onAddTask }) {
-    const[task, setTask] = useState({
-        title:"",
-        status:"todo",
-    })
+export default function Modal({ isOpen, onClose, onAddTask, onEditTask, editingTask }) {
+    const [title, setTitle] = useState("")
 
-    const handleChange = (event) =>{
-        setTask(prev => ({
-            ...prev,
-            [event.target.name]: event.target.value
+    useEffect(() => {
+        if (editingTask) {
+            setTitle(editingTask.title)
+        } else {
+            setTitle("")
+        }
+    }, [editingTask])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (!title.trim()) return
+
+        if (editingTask) {
+            onEditTask({
+                ...editingTask,
+                title
             })
-        )
-    }
-    const handleSubmit = (event) =>{
-        event.preventDefault()
-        onAddTask(task)
-        setTask({title:"",status:"todo"})
+        } else {
+            onAddTask({
+                title,
+                status: "todo"
+            })
+        }
+
+        setTitle("")
         onClose()
-        // fetch("api/newTask", {
-        //     method:"POST",
-        //     headers:{ 'Content-Type': 'application/json' },
-        //     credentials: "include",
-        //     body:JSON.stringify({
-        //         taskName: taskName
-        //     })
-        // })
     }
 
     if (!isOpen) return null
 
     return (
         <div className="modal-overlay" onClick={onClose}>
-            <div 
-                className="modal"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <h2>Создание задачи</h2>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
+                <h2>
+                    {editingTask ? "Редактировать задачу" : "Создать задачу"}
+                </h2>
+
                 <form onSubmit={handleSubmit}>
-                    <input 
-                        placeholder="Название" 
-                        name="title" 
-                        value={task.title} 
-                        onChange={handleChange} 
+                    <input
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        placeholder="Название задачи"
                     />
 
-                    <button type="submit">Создать</button>
-                    <button type="button" onClick={onClose}>Закрыть</button>
+                    <button type="submit">
+                        {editingTask ? "Сохранить" : "Создать"}
+                    </button>
+
+                    <button type="button" onClick={onClose}>
+                        Закрыть
+                    </button>
                 </form>
-                
             </div>
         </div>
     )

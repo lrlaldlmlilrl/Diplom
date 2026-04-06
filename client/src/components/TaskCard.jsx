@@ -1,14 +1,24 @@
-export default function TaskCard({ id, text, onChangeStatus  }) {
-  return (
-    <div className="task">
-      {text}
-      <button onClick={() => onChangeStatus(id, "inProgress")}>
-        В работу
-      </button>
+export default function TaskCard({ id, title, status, onChangeStatus, onDelete, onEdit }) {
+    return (
+        <div className="task">
+            <p>{title}</p>
 
-      <button onClick={() => onChangeStatus(id, "done")}>
-          Готово
-      </button>
-    </div>
-  )
+            <div className="actions">
+                {status === "todo" && (
+                    <button onClick={() => onChangeStatus(id, "inProgress")}>
+                        В работу
+                    </button>
+                )}
+
+                {status === "inProgress" && (
+                    <button onClick={() => onChangeStatus(id, "done")}>
+                        Готово
+                    </button>
+                )}
+
+                <button onClick={onEdit}>✏️</button>
+                <button onClick={() => onDelete(id)}>❌</button>
+            </div>
+        </div>
+    )
 }
