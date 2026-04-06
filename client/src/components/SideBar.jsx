@@ -14,6 +14,10 @@ export default function Sidebar() {
                 <button onClick={() => navigate("/dashboard")}>
                     Канбан
                 </button>
+
+                <button onClick={() => navigate("/calendar")}>
+                    Календарь
+                </button>
             </div>
         </div>
     )

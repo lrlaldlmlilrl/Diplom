@@ -45,7 +45,7 @@ export default function DashboardPage({ tasks, setTasks, navigate }) {
             <main className="main">
                 <TopBar onOpenModal={() => {
                     setEditingTask(null)
-                    setIsModalOpen(true)
+                    setIsModalOpen(true)    
                 }} />
 
                 <KanbanBoard

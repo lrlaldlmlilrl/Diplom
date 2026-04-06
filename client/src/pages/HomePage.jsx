@@ -3,7 +3,7 @@ import TopBar from "../components/TopBar"
 import TaskRow from "../components/TaskRow"
 import "./home.css"
 
-export default function HomePage({ user, tasks = [], navigate }) {
+export default function HomePage({ user, tasks = [], navigate, setEditingTask, setIsModalOpen }) {
     const today = new Date()
 
     const formattedDate = today.toLocaleDateString("ru-RU", {
@@ -24,7 +24,10 @@ export default function HomePage({ user, tasks = [], navigate }) {
                         <p>{formattedDate}</p>
                     </div>
 
-                    <TopBar />
+                    <TopBar onOpenModal={() => {
+                        setEditingTask(null)
+                        setIsModalOpen(true)
+                    }} />
 
                     <div className="home-tasks">
                         <h2>Все задачи</h2>
