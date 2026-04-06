@@ -77,7 +77,7 @@
   background: #059669;
 }
 
-/* модалка */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -131,34 +131,51 @@
 }
 
 .sidebar {
-  width: 240px;
-  background: rgba(15, 23, 42, 1);
-  color: white;
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    width: 220px;
+    height: 100vh;
+    background: #0F172A;
+    display: flex;
+    justify-content: center;
 }
 
-.sidebar h2 {
-  color: #ffffff;
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 16px;
 }
 
-.sidebar nav p {
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #cbd5f5;
+
+.sidebar button {
+    background: #0F172A; /* тот же цвет, что фон */
+    color: #cbd5f5;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: 0.2s;
 }
 
-.sidebar nav p:hover {
-  background: rgba(37, 99, 235, 1);
-  color: white;
+
+.sidebar button:hover {
+    background: #2563EB;
+    color: #ffffff;
 }
+.layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* важно */
+}
+
 .main {
-  flex: 1;
-  padding: 20px;
-  background: #f1f5f9;
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto; /* чтобы скроллился только контент */
+    background: #f1f5f9;
+    padding: 1%;
 }
 
 .kanban {

@@ -1,13 +1,20 @@
-export default function Sidebar() {
-    return (
-        <aside className="sidebar">
-            <h2>SoftAlert</h2>
+import { useNavigate } from "react-router-dom"
 
-            <nav>
-                <p>Доска задач</p>
-                <p>Календарь</p>
-                <p>Сотрудники</p>
-            </nav>
-        </aside>
+export default function Sidebar() {
+    const navigate = useNavigate()
+
+    return (
+        <div className="sidebar">
+            <div className="sidebar-nav">
+                <h2>SoftAlert</h2>
+                <button onClick={() => navigate("/home")}>
+                    Главная
+                </button>
+
+                <button onClick={() => navigate("/dashboard")}>
+                    Канбан
+                </button>
+            </div>
+        </div>
     )
 }
