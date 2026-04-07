@@ -6,11 +6,10 @@ import "./company.css"
 
 export default function CompanyDashboardPage({ user, tasks, users }) {
 
-    if (user.role !== "admin") {
-        return <p>Нет доступа</p>
-    }
+    if (!user) return <p>Загрузка...</p>
 
-    // 🔢 расчёты
+    if(user.role !== "admin") {return <p>Нет прав</p>}
+
     const activeTasks = tasks.filter(t => t.status !== "done").length
     const completed = tasks.filter(t => t.status === "done").length
     const overdue = 0

@@ -10,6 +10,7 @@ const registerUser = async (req, res) =>{
             password:hashPassword,
             fullName:req.body.fullName,
             phone:req.body.phone,
+            role:"admin",
         })
     
     res.sendStatus(201)
@@ -29,7 +30,7 @@ const loginUser = async (req, res) =>{
                 const token = generateToken({id: user.id})
                 res.cookie("token", token, {
                     httpOnly: true,
-                    sameSite: 'strict' 
+                    sameSite: 'lax' 
                 })
                 res.json({message: "ПОльзователь вошел успешно"})
             } else {
@@ -43,11 +44,23 @@ const loginUser = async (req, res) =>{
     }
 };
 const logoutUser = async (req, res) =>{
-    res.send("Юзер разлогинелся")
+    res.clearCookie("token")
+    res.json({ message: "Logout" }) 
 }
 
-const getProfile = async (req, res) =>{
-    res.send("Дать данные юзера")
+const getProfile = async (req, res) => {
+    try {
+        console.log("USER:", req.user)
+
+        const user = await User.findByPk(req.user.id)
+
+        console.log("FOUND:", user)
+
+        res.json(user)
+    } catch (e) {
+        console.log(e)
+        res.sendStatus(500)
+    }
 }
 
 

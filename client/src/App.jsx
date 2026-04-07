@@ -4,11 +4,13 @@ import LoginPage from "./pages/LoginPage"
 import { Routes, Route } from "react-router-dom"
 import DashboardPage from './pages/DashboardPage'
 import HomePage from './pages/HomePage'
-import { useState } from 'react'
+import { useEffect, useState } from "react"
 import CalendarPage from './pages/CalendarPage'
 import Modal from "./components/Modal"
 import AdminPage from './pages/AdminPage'
 import CompanyDashboardPage from './pages/CompanyDashboardPage'
+import ProfilePage from './pages/ProfilePage'
+import { getProfile } from "./services/userService"
 
 function App() {
 
@@ -18,10 +20,21 @@ function App() {
     { id: 3, name: "Алина", role: "user" }
   ])
 
-  const [user, setUser] = useState({
-    name: "Иван",
-    role: "admin"
-  })
+  const [user, setUser] = useState(null)
+
+    useEffect(() => {
+    console.log("Запрос профиля...")
+    
+    getProfile()
+      .then((data) => {
+        console.log("ПОЛУЧИЛ:", data)
+        setUser(data)
+      })
+      .catch((err) => {
+        console.error("ОШИБКА:", err)
+        setUser(null)
+      })
+  }, [])
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingTask, setEditingTask] = useState(null)
@@ -32,15 +45,15 @@ const addTask = ({ title, status = "todo", assignedTo }) => {
       title,
       status,
       createdAt: Date.now(),
-      assignedTo: assignedTo || user.name
+      assignedTo: assignedTo || user?.name
     }
 
     setTasks(prev => [...prev, newTask])
 }
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Сделать авторизацию", status: "todo", createdAt: Date.now(), assignedTo: user.name },
-    { id: 2, title: "Настроить API", status: "inProgress", createdAt: Date.now(), assignedTo: user.name },
-    { id: 3, title: "Сверстать dashboard", status: "done", createdAt: Date.now(),  assignedTo: user.name }
+    { id: 1, title: "Сделать авторизацию", status: "todo", createdAt: Date.now() },
+    { id: 2, title: "Настроить API", status: "inProgress", createdAt: Date.now() },
+    { id: 3, title: "Сверстать dashboard", status: "done", createdAt: Date.now() }
   ])
 
   return (<>
@@ -62,6 +75,7 @@ const addTask = ({ title, status = "todo", assignedTo }) => {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path = "/profile" element = {<ProfilePage user = {user} />} />
 
       <Route 
           path="/admin" 
@@ -127,7 +141,8 @@ const addTask = ({ title, status = "todo", assignedTo }) => {
       />
 
       <Route path="*" element={<LoginPage />} />
-    </Routes>s</>
+    </Routes>
+    </>
     
   )
 }

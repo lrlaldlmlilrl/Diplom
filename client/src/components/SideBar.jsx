@@ -26,6 +26,10 @@ export default function Sidebar() {
                 <button onClick={() => navigate("/company")}>
                     Статистика компании
                 </button>
+
+                <button onClick={() => navigate("/profile")}>
+                    Мой профиль
+                </button>
             </div>
         </div>
     )

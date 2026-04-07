@@ -5,6 +5,7 @@ const User =  sequelize.define("User",{
     password:{type:DataTypes.STRING , allowNull:false },
     fullName:{type:DataTypes.STRING , allowNull:false },
     phone:{type:DataTypes.STRING , allowNull:false },
+    role:{type:DataTypes.STRING , allowNull:false },
 });
 
 export {User}

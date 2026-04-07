@@ -9,7 +9,7 @@ export default function RegisterForm() {
         password:"",
         fullName:"",
         phone:"",
-        email:"",
+        role:"user"
     })  
     const navigate = useNavigate();
 

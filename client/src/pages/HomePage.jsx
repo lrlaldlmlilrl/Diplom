@@ -4,6 +4,9 @@ import TaskRow from "../components/TaskRow"
 import "./home.css"
 
 export default function HomePage({ user, tasks = [], navigate, setEditingTask, setIsModalOpen }) {
+    
+    if (!user) return <p>Загрузка...</p>
+
     const today = new Date()
 
     const formattedDate = today.toLocaleDateString("ru-RU", {
@@ -23,7 +26,7 @@ export default function HomePage({ user, tasks = [], navigate, setEditingTask, s
 
                 <div className="home">
                     <div className="home-header">
-                        <h1>Привет, {user?.name || "Пользователь"} 👋</h1>
+                        <h1>Привет, {user.login || "Пользователь"} 👋</h1>
                         <p>{formattedDate}</p>
                     </div>
 

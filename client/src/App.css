@@ -315,3 +315,11 @@ body {
     border-radius: 8px;
     cursor: pointer;
 }
+
+
+.profile {
+    padding: 24px;
+    background: white;
+    border-radius: 16px;
+    max-width: 400px;
+}

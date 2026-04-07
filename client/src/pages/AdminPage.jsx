@@ -5,9 +5,9 @@ import UserCard from "../components/UserCard"
 export default function AdminPage({ user, users, addTask }) {
 
     
-    if (user.role !== "admin") {
-        return <p>Нет доступа</p>
-    }
+    if (!user) return <p>Загрузка...</p>
+
+    if(user.role !== "admin") return <p>Нет прав</p>
 
     return (
         <div className="layout">
