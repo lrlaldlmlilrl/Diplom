@@ -4,7 +4,7 @@ import KanbanBoard from "../components/KanbanBoard"
 import Modal from "../components/Modal"
 import { useState } from "react"
 
-export default function DashboardPage({ tasks, setTasks, navigate }) {
+export default function DashboardPage({ tasks, setTasks, navigate, addTask }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [editingTask, setEditingTask] = useState(null)
 
@@ -20,13 +20,6 @@ export default function DashboardPage({ tasks, setTasks, navigate }) {
         )
     }
 
-    const addTask = (task) => {
-        const newTask = {
-            ...task,
-            id: Date.now()
-        }
-        setTasks(prev => [...prev, newTask])
-    }
 
     const changeTaskStatus = (id, newStatus) => {
         setTasks(prev =>

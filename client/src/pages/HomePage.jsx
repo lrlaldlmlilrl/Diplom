@@ -11,6 +11,9 @@ export default function HomePage({ user, tasks = [], navigate, setEditingTask, s
         day: "numeric",
         month: "long"
     })
+    const userTasks = tasks.filter(task => {
+        return task.assignedTo === user.name
+    })
 
     return (
         <div className="layout">
@@ -33,7 +36,7 @@ export default function HomePage({ user, tasks = [], navigate, setEditingTask, s
                         <h2>Все задачи</h2>
 
                         <div className="task-list">
-                            {tasks.map(task => (
+                            {userTasks.map(task => (
                                 <TaskRow key={task.id} task={task} />
                             ))}
                         </div>

@@ -18,6 +18,14 @@ export default function Sidebar() {
                 <button onClick={() => navigate("/calendar")}>
                     Календарь
                 </button>
+
+                <button onClick={() => navigate("/admin")}>
+                    Админ панель
+                </button>
+
+                <button onClick={() => navigate("/company")}>
+                    Статистика компании
+                </button>
             </div>
         </div>
     )

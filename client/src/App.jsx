@@ -7,41 +7,40 @@ import HomePage from './pages/HomePage'
 import { useState } from 'react'
 import CalendarPage from './pages/CalendarPage'
 import Modal from "./components/Modal"
+import AdminPage from './pages/AdminPage'
+import CompanyDashboardPage from './pages/CompanyDashboardPage'
 
 function App() {
 
+  const [users, setUsers] = useState([
+    { id: 1, name: "Радмир", role: "admin" },
+    { id: 2, name: "Иван", role: "user" },
+    { id: 3, name: "Алина", role: "user" }
+  ])
+
   const [user, setUser] = useState({
-    name: "Радмир"
+    name: "Иван",
+    role: "admin"
   })
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingTask, setEditingTask] = useState(null)
 
-  const addTask = (title) => {
-  const newTask = {
-    id: Date.now(),
-    title,
-    status: "todo",
-    createdAt: Date.now()
-  }
-    setTasks(prev => [...prev, newTask])
-  }
-
-   const handleAddTask = (data) => {
+const addTask = ({ title, status = "todo", assignedTo }) => {
     const newTask = {
       id: Date.now(),
-      title: data.title,
-      status: data.status,
-      createdAt: Date.now()
+      title,
+      status,
+      createdAt: Date.now(),
+      assignedTo: assignedTo || user.name
     }
 
     setTasks(prev => [...prev, newTask])
-  }
-
+}
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Сделать авторизацию", status: "todo", createdAt: Date.now() },
-    { id: 2, title: "Настроить API", status: "inProgress", createdAt: Date.now() },
-    { id: 3, title: "Сверстать dashboard", status: "done", createdAt: Date.now() }
+    { id: 1, title: "Сделать авторизацию", status: "todo", createdAt: Date.now(), assignedTo: user.name },
+    { id: 2, title: "Настроить API", status: "inProgress", createdAt: Date.now(), assignedTo: user.name },
+    { id: 3, title: "Сверстать dashboard", status: "done", createdAt: Date.now(),  assignedTo: user.name }
   ])
 
   return (<>
@@ -49,7 +48,7 @@ function App() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onAddTask={handleAddTask}
+        onAddTask={addTask}
         onEditTask={(updatedTask) => {
           setTasks(prev =>
             prev.map(task =>
@@ -63,6 +62,27 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+
+      <Route 
+          path="/admin" 
+          element={
+            <AdminPage
+              user={user}
+              users={users}
+              addTask={addTask}
+            />
+          }
+        />
+        <Route 
+          path="/company" 
+          element={
+            <CompanyDashboardPage
+              user={user}
+              users={users}
+              tasks={tasks}
+            />
+          }
+        />
 
       <Route 
         path="/home" 
@@ -85,7 +105,7 @@ function App() {
             user={user}
             tasks={tasks}
             setTasks={setTasks}
-            addTask={addTask}
+            addTask={addTask} 
             setEditingTask={setEditingTask}
             setIsModalOpen={setIsModalOpen}
           />
