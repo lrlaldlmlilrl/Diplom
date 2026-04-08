@@ -11,7 +11,7 @@ export default function AdminPage({ user, users, addTask }) {
 
     return (
         <div className="layout">
-            <Sidebar />
+            <Sidebar user={user} />
 
             <main className="main">
 

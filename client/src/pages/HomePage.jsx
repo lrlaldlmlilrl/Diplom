@@ -20,7 +20,7 @@ export default function HomePage({ user, tasks = [], navigate, setEditingTask, s
 
     return (
         <div className="layout">
-            <Sidebar navigate={navigate} />
+            <Sidebar navigate={navigate} user={user} />
 
             <main className="main">
 

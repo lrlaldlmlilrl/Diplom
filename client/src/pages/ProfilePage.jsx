@@ -8,7 +8,7 @@ export default function ProfilePage({ user }) {
 
     return (
         <div className="layout">
-            <Sidebar />
+            <Sidebar user={user}/>
 
             <main className="main">
 

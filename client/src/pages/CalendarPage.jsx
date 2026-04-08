@@ -4,12 +4,12 @@ import CalendarGrid from "../components/CalendarGrid"
 import { useState } from "react"
 import "./calendar.css"
 
-export default function CalendarPage({ tasks, setEditingTask, setIsModalOpen }) {
+export default function CalendarPage({ tasks, setEditingTask, setIsModalOpen, user }) {
     const [currentDate, setCurrentDate] = useState(new Date())
 
     return (
         <div className="layout">
-            <Sidebar />
+            <Sidebar user={user}/>
 
             <main className="main">
                 <TopBar onOpenModal={() => {

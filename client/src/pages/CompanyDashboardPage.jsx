@@ -20,7 +20,7 @@ export default function CompanyDashboardPage({ user, tasks, users }) {
 
     return (
         <div className="layout">
-            <Sidebar />
+            <Sidebar user={user}/>
 
             <main className="main">
 

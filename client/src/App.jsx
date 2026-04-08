@@ -27,11 +27,9 @@ function App() {
     
     getProfile()
       .then((data) => {
-        console.log("ПОЛУЧИЛ:", data)
         setUser(data)
       })
       .catch((err) => {
-        console.error("ОШИБКА:", err)
         setUser(null)
       })
   }, [])

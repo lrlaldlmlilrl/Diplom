@@ -23,7 +23,10 @@ export default function LoginForm() {
             if (!res.ok) {
                 throw new Error("Ошибка авторизации")
             }
-            navigate("/dashboard", {replace: true})
+            console.log(
+                "Успешная авторизация"
+            )
+            navigate("/home", {replace: true})
             
         })
         .catch((err) => {
