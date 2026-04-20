@@ -7,14 +7,71 @@ export default function RegisterForm() {
     const[formData, setFormData] = useState({
         login:"",
         password:"",
-        fullName:"",
+        firstName:"",
+        lastName:"",
         phone:"",
-        email:"",
     })  
+
+    const[errors, setErrors] = useState({
+        login:"",
+        password:"",
+        firstName: "",
+        lastName: "",
+        phone:"",
+    })
+
+    const[showPassword, setShowPassword] = useState(false)
+
+    const loginPattern = /^[a-zA-Z]+$/;
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    const namePattern = /^[А-Яа-яЁё]+$/;
+    const phonePattern = /^8\d{10}$/;
+
+    const validate = (fieldName, value) => {
+        let error = "";
+        
+        switch(fieldName) {
+            case "login":
+                if (!loginPattern.test(value)) {
+                    error = "Некорректный логин";
+                }
+                break;
+            case "password":
+                if (!passwordPattern.test(value)) {
+                    error = "Пароль должен быть не менее 6 символов и иметь цифры и буквы";
+                }
+                break;
+            case "firstName":
+            case "lastName":
+                if (!namePattern.test(value)) {
+                    error = "Только кириллица";
+                }
+                break;
+            case "phone":
+                if (!phonePattern.test(value)) {
+                    error = "Некорректный телефон";
+                }
+                break;
+        }
+        
+        setErrors(prev => ({...prev, [fieldName]: error}));
+    }
+    
+
     const navigate = useNavigate();
 
     const handleSubmit = (event) =>{
         event.preventDefault()
+
+        const hasErrors = Object.values(errors).some(error => error !== "");
+
+        const hasEmptyFields = Object.values(formData).some(value => !value);
+
+        if (hasErrors || hasEmptyFields) {
+            alert("Заполните все поля корректно!");
+            return;
+        }
+
         fetch("/api/register", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
@@ -37,15 +94,17 @@ export default function RegisterForm() {
     }
     
 
-    const handleChange = (event) =>{
-        setFormData(prev => ({
-            ...prev,
-            [event.target.name]: event.target.value 
-        }))
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormData(prev => ({...prev, [name]: value}));
+
+        validate(name, value);
     }
 
     return (
         <form onSubmit={handleSubmit}>
+            {errors.login && <span className="error">{errors.login}</span>}
             <input
                 type="text"
                 name="login"
@@ -54,29 +113,39 @@ export default function RegisterForm() {
                 onChange={handleChange}
                 required
             />
-
+            {errors.password && <span className="error">{errors.password}</span>}
             <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Пароль"
                 value={formData.password}
                 onChange={handleChange}
                 required
             />
-
+            <button type = "button" onClick={() => {setShowPassword(prev => !prev)}} >{showPassword ? "Скрыть" : "Показать"}</button>
+            {errors.firstName && <span className="error">{errors.firstName}</span>}
             <input
                 type="text"
-                name="fullName"
-                placeholder="ФИО"
-                value={formData.fullName}
+                name="firstName"
+                placeholder="Имя"
+                value={formData.firstName}
                 onChange={handleChange}
                 required
             />
-
+            {errors.lastName && <span className="error">{errors.lastName}</span>}
+            <input
+                type="text"
+                name="lastName"
+                placeholder="Фамилия"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+            />
+            {errors.phone && <span className="error">{errors.phone}</span>}
             <input
                 type="tel"
                 name="phone"
-                placeholder="Телефон"
+                placeholder="89010973385    "
                 value={formData.phone}
                 onChange={handleChange}
                 required
