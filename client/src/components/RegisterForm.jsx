@@ -22,7 +22,7 @@ export default function RegisterForm() {
 
     const[showPassword, setShowPassword] = useState(false)
 
-    const loginPattern = /^[a-zA-Z]+$/;
+    const loginPattern = /^[A-Za-z0-9]+$/;
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const namePattern = /^[А-Яа-яЁё]+$/;
     const phonePattern = /^8\d{10}$/;
@@ -114,15 +114,23 @@ export default function RegisterForm() {
                 required
             />
             {errors.password && <span className="error">{errors.password}</span>}
-            <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Пароль"
-                value={formData.password}
-                onChange={handleChange}
-                required
-            />
-            <button type = "button" onClick={() => {setShowPassword(prev => !prev)}} >{showPassword ? "Скрыть" : "Показать"}</button>
+            <div className="passwordWrapper">
+                <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Пароль"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+                <button
+                    className="passwordButton"
+                    type="button"
+                    onClick={() => setShowPassword(prev => !prev)}
+                >
+                    "👁"
+                </button>
+            </div>
             {errors.firstName && <span className="error">{errors.firstName}</span>}
             <input
                 type="text"

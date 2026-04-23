@@ -28,6 +28,63 @@ body {
   min-height: 100vh;
 }
 
+.passwordWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.passwordWrapper input {
+    width: 94%;
+    padding: 14px 45px 14px 16px; /* справа место для кнопки */
+    border-radius: 10px;
+    border: none;
+    background-color: #3f3f46;
+    color: white;
+    outline: none;
+}
+
+.passwordWrapper input::placeholder {
+    color: #9ca3af;
+}
+
+.passwordWrapper input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+
+.passwordButton {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    margin-top: 0 !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+    border: none; 
+    background: none !important; 
+    color: white;
+    cursor: pointer;
+    
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    font-size: 18px;
+    color: #9ca3af;
+
+    transition: 0.2s ease;
+    padding: 4px;
+}
+
+.passwordButton:hover {
+    color: #3b82f6;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.passwordButton:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
